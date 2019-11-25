@@ -1,0 +1,43 @@
+{
+    "name": "dherran/laravel-rawg",
+    "description": "Collection of RAWG API methods for Laravel",
+    "version": "1.0.0",
+    "keywords": [
+        "rawg",
+        "rawg for laravel",
+        "rawg for php"
+    ],
+    "homepage": "https://dherran.github.io/laravel-rawg/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Danny Herran",
+            "email": "this@dannyherran.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "illuminate/support": "6.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rawg\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+          "providers": [
+            "Rawg\\RawgServiceProvider"
+        ],
+          "aliases": {
+            "Rawg": "Rawg\\Facade\\Rawg"
+        }
+    }
+}
+}
