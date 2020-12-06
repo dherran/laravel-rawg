@@ -1,4 +1,4 @@
-## Collection of RAWG API Web Services for Laravel 6
+## Collection of RAWG API Web Services for Laravel 6-8
 Provides a convenient way of setting up and making requests to the RAWG API from a [Laravel](http://laravel.com/) application. 
 For RAWG endpoint documentation, rate limits and licencing please visit the [RAWG API Docs](https://api.rawg.io/docs).
 
