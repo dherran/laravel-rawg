@@ -23,18 +23,18 @@ Configuration
 
 Publish the configuration file using **`php artisan vendor:publish --provider="Rawg\RawgServiceProvider"`** or simply copy the package configuration file and paste it into **`config/rawg.php`**
 
-Open the config file **`config/rawg.php`** and add your app User Agent.
+Open the config file **`config/rawg.php`** and add your app API Key obtainable at https://rawg.io/apidocs.
 ```php
     /*
     |----------------------------------
-    | User Agent
+    | API Key
     |------------------------------------
     */
     
-    'user_agent' => 'Stay Meta',
+    'api_key' => 'XYZ',
 ```
 
-As per the RAWG API Docs: Every API request should have a User-Agent header with your app name. If you don’t provide it, we may ban your requests.
+As per the RAWG API Docs: Every API request should have an API Key. If you don’t provide it, we may ban your requests.
 
 
 Usage
