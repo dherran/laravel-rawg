@@ -2,6 +2,8 @@
 
 namespace Rawg;
 
+use Illuminate\Support\Arr;
+
 /**
  * Collection of methods that perform a RESTful request to RAWG
  *
@@ -21,13 +23,23 @@ class Rawg
 
     /*
     |--------------------------------------------------------------------------
-    | User Agent
+    | User Agent [deprecated]
     |--------------------------------------------------------------------------
     |
     |
     |
      */
     protected $user_agent;
+
+    /*
+    |--------------------------------------------------------------------------
+    | API Key
+    |--------------------------------------------------------------------------
+    |
+    |
+    |
+     */
+    protected $api_key;
 
     /*
     |--------------------------------------------------------------------------
@@ -121,6 +133,27 @@ class Rawg
     }
 
     /**
+     * Setting api_key
+     *
+     * @return $this
+     */
+    public function setApiKey()
+    {
+        $this->api_key = config('rawg.api_key');
+        return $this;
+    }
+
+    /**
+     * Getting api_key
+     *
+     * @return string
+     */
+    public function getApiKey()
+    {
+        return $this->api_key;
+    }
+
+    /**
      * Set parameter by key
      *
      * @param string $key
@@ -129,7 +162,7 @@ class Rawg
      */
     public function setParamByKey(string $key, $value)
     {
-        array_set($this->params, $key, $value);
+        Arr::set($this->params, $key, $value);
 
         return $this;
     }
@@ -227,6 +260,9 @@ class Rawg
         // Set the API URL
         $this->setApiUrl();
 
+        // Set the API Key
+        $this->setApiKey();
+
         // Set the user agent
         $this->setUserAgent();
 
@@ -252,6 +288,10 @@ class Rawg
             throw new \ErrorException('Unable to find RAWG config file.');
         }
 
+        // if (!array_key_exists('api_key', config('rawg'))) {
+        //     throw new \ErrorException('Unable to find API Key param in config file.');
+        // }
+
         if (!array_key_exists('user_agent', config('rawg'))) {
             throw new \ErrorException('Unable to find User Agent param in config file.');
         }
@@ -272,6 +312,9 @@ class Rawg
         $endpoint = preg_replace_callback('~\{([^}]*)\}~', function ($matches) {
             return $this->params[$matches[1]] ?? null;
         }, $this->endpoint);
+
+        // Set the API Key
+        $this->setParamByKey('key', $this->api_key);
 
         $this->request_url = $this->api_url . $endpoint;
         $this->request_url .= '?' . http_build_query($this->params);

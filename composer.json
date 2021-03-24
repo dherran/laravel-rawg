@@ -1,7 +1,7 @@
 {
     "name": "dherran/laravel-rawg",
     "description": "Collection of RAWG API methods for Laravel",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "keywords": [
         "rawg",
         "rawg for laravel",
